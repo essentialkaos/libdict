@@ -60,7 +60,7 @@ $(PROFIL_LIB): $(PROFIL_OBJ)
 	ar cru $(PROFIL_LIB) $(PROFIL_OBJ)
 
 $(SHARED_LIB): $(SHARED_OBJ)
-	$(CC) -shared -o $(SHARED_LIB) $(SHARED_OBJ)
+	$(CC) -shared -Wl,-soname,$(INSTALL_SHLIB) -o $(SHARED_LIB) $(SHARED_OBJ)
 
 $(OUTPUT_DIR)/%.o: $(SOURCE_DIR)/%.c $(HEADER) GNUmakefile
 	$(CC) $(CFLAGS) -c -o $(@) $(<)
