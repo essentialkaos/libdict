@@ -23,15 +23,25 @@ STATIC_LIB := $(OUTPUT_DIR)/$(STATIC_LIB_NAME)
 PROFIL_LIB := $(OUTPUT_DIR)/$(PROFIL_LIB_NAME)
 SHARED_LIB := $(OUTPUT_DIR)/$(SHARED_LIB_NAME)
 
+ARCH = $(shell sh -c 'getconf LONG_BIT')
+
+ifeq ($(ARCH),32)
+  ARCH_FLAG = -m32
+  LIBDIR_DEFAULT = lib
+else
+  ARCH_FLAG = -m64
+  LIBDIR_DEFAULT = lib64
+endif
+
 # Plug in your favorite compiler here:
-CC := $(shell which clang || which gcc)
+CC := $(shell which gcc-4.5 || which clang || which gcc)
 INCLUDES = -I$(HEADER_DIR) -I$(SOURCE_DIR) -I$(CUNIT_PREFIX)/include
 CFLAGS = -Wall -Wextra -Wshadow -W -std=c99 -O3 $(INCLUDES)
 LDFLAGS =
 
 INSTALL_PREFIX ?= /usr/local
 INSTALL_BINDIR = $(INSTALL_PREFIX)/bin
-INSTALL_LIBDIR = $(INSTALL_PREFIX)/lib
+INSTALL_LIBDIR = $(INSTALL_PREFIX)/$(LIBDIR_DEFAULT)
 INSTALL_INCDIR = $(INSTALL_PREFIX)/include/dict
 INSTALL_MANDIR = $(INSTALL_PREFIX)/man
 INSTALL ?= install
