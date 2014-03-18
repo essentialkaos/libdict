@@ -39,7 +39,7 @@ Summary:         ANSI C library of key-value data structures with generic interf
 Name:            lib%{shortname}
 Version:         0.3.0
 Release:         1%{?dist}
-License:         MIT
+License:         BSD
 Group:           System Environment/Libraries
 URL:             https://github.com/fmela/libdict
 
