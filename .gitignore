@@ -6,3 +6,4 @@ bin/*
 *.aux
 .*.swp
 *.pdf
+*.rpm
